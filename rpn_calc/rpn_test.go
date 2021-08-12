@@ -1,15 +1,24 @@
 package rpn_calc
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
+
+func assert(t *testing.T, want interface{}, got interface{}) {
+	if !reflect.DeepEqual(want, got) {
+		t.Error("Got ", got, "but want ", want)
+	}
+
+}
 
 func Test_rpn(t *testing.T) {
 	t.Run("3 2 -", func(t *testing.T) {
 		//rpn("3 2 -") // string
 		//rpn("3", "2", "-") // []string
 		result := rpn(3, 2, "-") // []interface{}
-		if result != 1 {
-			t.Error("Got ", result)
-		}
+		assert(t, 1, result)
+
 	})
 	t.Run("5 3 2 * +", func(t *testing.T) {
 		// 5 [5]
@@ -18,13 +27,10 @@ func Test_rpn(t *testing.T) {
 		// * [5,6]
 		// + [11]
 		result := rpn(5, 3, 2, "*", "+") // []interface{}
-		if result != 11 {
-			t.Error("Got ", result)
-		}
-
+		assert(t, 11, result)
 	})
 	t.Run("12 3 - 3 /", func(t *testing.T) {
-
+		result := rpn(12, 3, "-", 3, "/") // []interface{}
+		assert(t, 3, result)
 	})
-
 }

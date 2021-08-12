@@ -25,18 +25,23 @@ func rpn1(args []interface{}) int {
 		}
 		if arg == "-" {
 			result := stack[len(stack)-2] - stack[len(stack)-1]
-			stack = stack[0:len(stack)-2]
+			stack = stack[0 : len(stack)-2]
 			stack = append(stack, result)
 		}
 		if arg == "*" {
 			result := stack[len(stack)-2] * stack[len(stack)-1]
-			stack = stack[0:len(stack)-2]
+			stack = stack[0 : len(stack)-2]
 			stack = append(stack, result)
 		}
 
 		if arg == "+" {
 			result := stack[len(stack)-2] + stack[len(stack)-1]
-			stack = stack[0:len(stack)-2]
+			stack = stack[0 : len(stack)-2]
+			stack = append(stack, result)
+		}
+		if arg == "/" {
+			result := stack[len(stack)-2] / stack[len(stack)-1]
+			stack = stack[0 : len(stack)-2]
 			stack = append(stack, result)
 		}
 
