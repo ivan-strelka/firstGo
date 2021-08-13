@@ -23,6 +23,7 @@ func rpn1(args []interface{}) int {
 		if isInt(arg) {
 			stack = append(stack, arg.(int))
 		}
+		// TODO refactoring
 		if arg == "-" {
 			result := stack[len(stack)-2] - stack[len(stack)-1]
 			stack = stack[0 : len(stack)-2]
@@ -42,6 +43,10 @@ func rpn1(args []interface{}) int {
 		if arg == "/" {
 			result := stack[len(stack)-2] / stack[len(stack)-1]
 			stack = stack[0 : len(stack)-2]
+			stack = append(stack, result)
+		}
+		if arg == "DUP" {
+			result := stack[len(stack)-1]
 			stack = append(stack, result)
 		}
 

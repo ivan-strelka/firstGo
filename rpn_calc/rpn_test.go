@@ -33,4 +33,14 @@ func Test_rpn(t *testing.T) {
 		result := rpn(12, 3, "-", 3, "/") // []interface{}
 		assert(t, 3, result)
 	})
+
+	t.Run("4 DUP *", func(t *testing.T) {
+		result := rpn(4, "DUP", "*") // []interface{}
+		assert(t, 16, result)
+	})
+	t.Run("5 DUP *", func(t *testing.T) {
+		result := rpn(5, "DUP", "*") // []interface{}
+		assert(t, 25, result)
+	})
+
 }
